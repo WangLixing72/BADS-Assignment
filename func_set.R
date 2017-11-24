@@ -353,20 +353,71 @@ clean.raw <- function(){
 #data.brand$brand <- as.factor(data.brand$brand)
 
 d <- T.data$c_data
-col2rgb(as.character(d$item_color), alpha = FALSE)
+proj.col.map <- function(d){
+  #This is a function that transform color names to RGB values.
+  #Readability is extremely poor.
+  #result dataframe returns the new dataframe that contains RGB values and indicators of generalized colors
+  #like "?","stained",and "striped", ect.
 
-f <- function(x){
-  result <- tryCatch({
-    col2rgb(x, alpha = FALSE)
-  }, warning = function(warning_condition) {
-    message("wrong")
-  }, error = function(error_condition) {
-    message("wrong")
-  })
+  if(! "Hmisc" %in% rownames(installed.packages())){install.packages("Hmisc")}
+  library(Hmisc)
+  f <- function(x){
+    result <- tryCatch({
+      as.data.frame(t(rbind(capitalize(x),col2rgb(x, alpha = FALSE))))
+    }, warning = function(warning_condition) {
+      message("wrong")
+    }, error = function(error_condition) {
+      as.data.frame(t(rbind(capitalize(x),col2rgb("white", alpha = FALSE))))
+    })
+  }
+
+  M <- lapply(unique(as.character(d$item_color)),f)
+
+  names(M) <- capitalize(unique(as.character(d$item_color)))
+
+
+  color <- read.csv("Color.txt",sep = ",",header = F)
+  names(color) <- c("V1","red","green","blue")
+  summary(color)
+
+  c.f <- function(x){
+    if (as.character(x[1,1]) %in% color$V1){
+      subset(color,V1 == as.character(x[1,1]))
+    }
+    else {
+      x[1,1] <- as.character(x[1,1])
+      x}
+  }
+
+  color.map <- lapply(M,c.f)
+  color.map
+  as.data.frame(color.map)
+  Color.map <- NULL
+  for (c in color.map){
+    Color.map <- rbind(Color.map,as.matrix(c))
+  }
+
+  data.colormap <- data.frame(name = tolower(Color.map[,1]), red = Color.map[,2],
+                              green = Color.map[,3] , blue = Color.map[,4])
+
+  result <- merge(d,data.colormap,by.x = "item_color",by.y = "name",sort = F)
+  result$unknowncol <- result$item_color == "?"
+  result$stained <- result$item_color == "stained"
+  result$striped <- result$item_color == "striped"
+  result$curled <- result$item_color == "curled"
+  result
 }
-names(M) <- unique(as.character(d$item_color))
-M <- lapply(unique(as.character(d$item_color)),f)
-names(subset(M,is.null(M)))
-n <- lapply(M,is.null)
-names(n[n == TRUE])
-names(n[n == FALSE])
+
+unique(d$user_state)
+
+proj.state.map <- function(d){
+  #This function intends to map the state name to its longitude and latitude.
+  state.loc <- read.csv("state.txt", header = F)
+  names(state.loc) <- c("name","latitude","longitude")
+  result <- merge(d,state.loc,by.x = "user_state",by.y = "name",sort = F)
+}
+
+
+
+
+
