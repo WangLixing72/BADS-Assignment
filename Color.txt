@@ -1,0 +1,65 @@
+Ecru,243,223,202
+Ash,160,153,152
+Iron,115,100,96
+Anthracite,40,40,45
+Silver,162,162,161
+Almond,167,117,77
+Caramel,195,124,84
+Cognac,139,100,90
+Lemon,243,191,8
+Curry,190,158,111
+Apricot,241,144,53
+Mango,183,94,65
+Hibiscus,221,56,72
+Crimson,174,14,54
+Amethyst,134,77,117
+Bordeaux,150,99,123
+Ebony,65,66,74
+Aqua,100,161,173
+Opal,119,207,183
+Mint,0,161,112
+Avocado,103,98,50
+Denim,108,118,160
+Olive,199,182,67
+Berry,211,46,94
+Ocher,160,82,45
+Petrol,0,95,106
+Terracotta,226,114,91
+Stained,0,0,0
+Blau,0,0,255
+Nature,34,139,34
+Mocca,111,55,45
+Graphite,51,48,40
+Dark denim,21,96,189
+Basalt,78,87,84
+Ancient,224,157,102
+Floral,255,250,240
+Aubergine,55,37,40
+Cobalt blue,0,71,171
+Champagner,247,231,206
+Fuchsia,255,0,128
+Mahagoni,103,10,10
+Striped,0,0,0
+Pallid,255,172,224
+?,0,0,0
+Dark navy,0,0,128
+Habana,126,93,59
+Jade,0,168,107
+Baltic blue,4,50,83
+Ingwer,242,226,169
+Currant purple,61,50,66
+Kanel,210,105,30
+Dark oliv,85,107,47
+Copper coin,164,86,65
+Brwon,244,164,96
+Aviator,82,99,107
+Dark garnet,120,28,46
+Curled,0,0,0
+Creme,255,253,208
+Perlmutt,251,244,226
+Antique pink,211,110,112
+Oliv,128,128,0
+Vanille,243,229,171
+
+
+
